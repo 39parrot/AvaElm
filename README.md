@@ -10,8 +10,8 @@ Click [here](http://evancz.github.io/elm-architecture-tutorial/examples/1) to se
 If you do not have this repo on your computer yet, run these commands.
 
 ```bash
-git clone https://github.com/evancz/elm-architecture-tutorial.git
-cd elm-architecture-tutorial
+git clone https://github.com/LapshinIV/AvaElm.git
+cd AvaElm
 ```
 
 Once you are in the `AvaElm/` directory, run these commands:
