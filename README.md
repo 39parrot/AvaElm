@@ -1,8 +1,3 @@
-## Preview
-
-Click [here](http://evancz.github.io/elm-architecture-tutorial/examples/1) to see it running.
-
-
 ## Run Locally
 
 (First [install Elm](http://elm-lang.org/install))
