@@ -1,3 +1,4 @@
+import Person exposing (..)
 import PersonGrid exposing (..)
 import StartApp.Simple exposing (start)
 
@@ -7,3 +8,10 @@ main =
     , update = PersonGrid.update
     , view = PersonGrid.view
     }
+
+-- main =
+--   start
+--     { model = Person.Model "/avatar/alex.jpg"
+--     , update = Person.update
+--     , view = Person.view
+--     }
