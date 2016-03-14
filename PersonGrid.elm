@@ -43,7 +43,7 @@ view : Signal.Address Action -> Model -> Html
 view address model =
   div -- flex container
     [ style
-      [ "backgroundImage" => "url(public/assets/avatar/background.jpg)"
+      [ "backgroundImage" => "url(public/assets/background/background.jpg)"
       , "backgroundSize" => "cover"
       , "backgroundPosition" => "center"
       , "height" => "100vh"
