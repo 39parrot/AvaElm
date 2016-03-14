@@ -12,10 +12,10 @@ type alias Model = List (PersonId, Person.Model)
 
 init : Model
 init =
-  [ (1, Person.Model "/avatar/alex.jpg" True)
-  , (2, Person.Model "/avatar/dmitry.jpg" True)
-  , (3, Person.Model "/avatar/ivan.jpg" True)
-  , (4, Person.Model "/avatar/macaw.jpg" True)
+  [ (1, Person.Model "public/assets/avatar/alex.jpg" True)
+  , (2, Person.Model "public/assets/avatar/dmitry.jpg" True)
+  , (3, Person.Model "public/assets/avatar/ivan.jpg" True)
+  , (4, Person.Model "public/assets/avatar/macaw.jpg" True)
   ]
 
 -- UPDATE
@@ -43,7 +43,7 @@ view : Signal.Address Action -> Model -> Html
 view address model =
   div -- flex container
     [ style
-      [ "backgroundImage" => "url(/avatar/background.jpg)"
+      [ "backgroundImage" => "url(public/assets/avatar/background.jpg)"
       , "backgroundSize" => "cover"
       , "backgroundPosition" => "center"
       , "height" => "100vh"
