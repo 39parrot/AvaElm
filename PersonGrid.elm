@@ -3,26 +3,34 @@ module PersonGrid where
 import Person exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (style)
+import Http exposing (..)
+import Task exposing (..)
+import Effects exposing (..)
+import Json.Decode as Json exposing (..)
 
 -- MODEL
 
 type alias PersonId = Int
 
-type alias Model = List (PersonId, Person.Model)
+type alias PersonList = List (PersonId, Person.Model)
 
-init : Model
+type alias Model =
+  { people: PersonList }
+
+init : (Model, Effects Action)
 init =
-  [ (1, Person.Model "public/assets/avatar/alex.jpg" True)
-  , (2, Person.Model "public/assets/avatar/dmitry.jpg" True)
-  , (3, Person.Model "public/assets/avatar/ivan.jpg" True)
-  , (4, Person.Model "public/assets/avatar/macaw.jpg" True)
-  ]
+  ( { people = [] }
+  , Http.get decodePeopleResponse "http://localhost:8001/people"
+    |> Task.toMaybe
+    |> Task.map PeopleResponse
+    |> Effects.task
+  )
 
 -- UPDATE
 
-type Action = PersonAction PersonId Person.Action
+type Action = PeopleResponse (Maybe PersonList) | PersonAction PersonId Person.Action
 
-update : Action -> Model -> Model
+update : Action -> Model -> (Model, Effects Action)
 update action model =
   case action of
     PersonAction personId personAction ->
@@ -33,7 +41,13 @@ update action model =
           else
             (iPersonId, iPersonModel)
       in
-      List.map updatePerson model
+        ( { model | people = List.map updatePerson model.people }
+        , Effects.none
+        )
+    PeopleResponse maybePersonList ->
+      ( { model | people = Maybe.withDefault [] maybePersonList}
+      , Effects.none
+      )
 
 -- VIEW
 
@@ -52,7 +66,7 @@ view address model =
       ]
     ]
     -- flex items
-    (List.map (viewPerson address) model)
+    (List.map (viewPerson address) model.people)
 
 viewPerson : Signal.Address Action -> (PersonId, Person.Model) -> Html
 viewPerson address (iPersonId, iPersonModel) =
@@ -61,3 +75,16 @@ viewPerson address (iPersonId, iPersonModel) =
       [ "margin" => "auto" ]
     ]
     [ Person.view (Signal.forwardTo address (PersonAction iPersonId)) iPersonModel ]
+
+-- EFFECTS
+
+type alias PersonRecord = { id: Int, name: String, active: Bool }
+
+decodePeopleResponse: Json.Decoder PersonList
+decodePeopleResponse =
+  Json.object3 PersonRecord
+    ("id" := Json.int)
+    ("name" := Json.string)
+    ("active" := Json.bool)
+  |> Json.map (\obj3 -> (obj3.id, Person.Model "public/assets/avatar/macaw.jpg" obj3.active))
+  |> Json.list
