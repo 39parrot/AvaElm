@@ -1,0 +1,28 @@
+{
+  "people": [
+    {
+      "id": 1,
+      "name": "dmitry",
+      "src": "public/assets/avatar/dmitry.jpg",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "alex",
+      "src": "public/assets/avatar/alex.jpg",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "ivan",
+      "src": "public/assets/avatar/ivan.jpg",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "macaw",
+      "src": "public/assets/avatar/macaw.jpg",
+      "active": true
+    }
+  ]
+}

@@ -78,13 +78,13 @@ viewPerson address (iPersonId, iPersonModel) =
 
 -- EFFECTS
 
-type alias PersonRecord = { id: Int, name: String, active: Bool }
+type alias PersonRecord = { id: Int, src: String, active: Bool }
 
 decodePeopleResponse: Json.Decoder PersonList
 decodePeopleResponse =
   Json.object3 PersonRecord
     ("id" := Json.int)
-    ("name" := Json.string)
+    ("src" := Json.string)
     ("active" := Json.bool)
-  |> Json.map (\obj3 -> (obj3.id, Person.Model "public/assets/avatar/macaw.jpg" obj3.active))
+  |> Json.map (\obj3 -> (obj3.id, Person.Model obj3.src obj3.active))
   |> Json.list
