@@ -1,17 +1,21 @@
-import Person exposing (..)
-import PersonGrid exposing (..)
-import StartApp.Simple exposing (start)
+import PersonGrid exposing (init, update, view)
+import StartApp exposing (start)
+import Task exposing (..)
+import Effects exposing (Never)
 
-main =
-  start
-    { model = PersonGrid.init
-    , update = PersonGrid.update
-    , view = PersonGrid.view
+app =
+  StartApp.start
+    { init = init
+    , update = update
+    , view = view
+    , inputs = []
     }
 
--- main =
---   start
---     { model = Person.Model "/avatar/alex.jpg"
---     , update = Person.update
---     , view = Person.view
---     }
+
+main =
+  app.html
+
+
+port tasks : Signal (Task.Task Never ())
+port tasks =
+  app.tasks
