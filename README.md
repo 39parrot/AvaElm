@@ -8,6 +8,16 @@ If you do not have this repo on your computer yet, run these commands.
 git clone https://github.com/LapshinIV/AvaElm.git
 cd AvaElm
 ```
+You have to install json-server
+
+```bash
+npm install -g json-server
+```
+Go to `AvaElm/server` and run the command
+
+```bash
+json-server --watch db.json --port 8001
+```
 
 Once you are in the `AvaElm/` directory, run these commands:
 

@@ -10,7 +10,7 @@
       "id": 2,
       "name": "alex",
       "src": "public/assets/avatar/alex.jpg",
-      "active": true
+      "active": false
     },
     {
       "id": 3,
