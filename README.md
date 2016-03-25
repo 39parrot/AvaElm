@@ -16,10 +16,12 @@ npm install -g json-server
 Go to `AvaElm/server` and run the command
 
 ```bash
-json-server --watch db.json --port 8001
+npm install json-server
+npm install lodash
+node server.js
 ```
 
-Once you are in the `AvaElm/` directory, run these commands:
+Once you are in the `AvaElm/client` directory, run these commands:
 
 ```bash
 elm-reactor
