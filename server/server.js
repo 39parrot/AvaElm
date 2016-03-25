@@ -28,4 +28,3 @@ router.render = function(req, res) {
 server.use(router)
 
 server.listen(8001)
-console.log('hi');
